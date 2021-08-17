@@ -2,12 +2,19 @@
 
 describe("Login feature Test", () => {
 
+    beforeEach(() => {
+        cy.fixture('user').then(user => {
 
-    it("should visit the login page correctly", () => {
+            user.email = 'hatem@gmail.com'
+        }).as('user')
+    })
+
+    it("Login feature Test", () => {
 
         cy.visit("cypress/index.html");
-        cy.get('[name="courses"]').select('wdio').should('contain', 'wdio');
-        cy.get('[type="checkbox"]').check('Fries').should('be.checked');
+        cy.get('@user').then(user => {
+            cy.log(user)
+        })
     })
 
  })
